@@ -87,7 +87,8 @@
                     $sobre = $pdo->prepare("SELECT * FROM `tb_sobre`");
                     $sobre->execute();
                     $sobre = $sobre->fetch()['sobre'];
-                  }else if(isset($_POST['cadastrar_equipe'])){
+                  }
+                  if(isset($_POST['cadastrar_equipe'])){
                     $nome = $_POST['nome_membro'];
                     $descricao = $_POST['descricao'];
                     $sql = $pdo->prepare("INSERT INTO `tb_equipe` VALUES (null,?,?)");
@@ -152,14 +153,14 @@
                               </thead>
                               <tbody>
                                 <?php
-                                  $selecionarMembros = $pdo->prepare("SELECT `id`,`nome` FROM `tb_equipe`");
+                                  $selecionarMembros = $pdo->prepare("SELECT `id`,`nome_membro` FROM `tb_equipe`");
                                   $selecionarMembros->execute();
                                   $membros = $selecionarMembros->fetchAll();
                                   foreach($membros as $key=>$value){
                                 ?>
                                 <tr>
                                   <td><?php echo $value['id']; ?></td>
-                                  <td><?php echo $value['nome'] ?></td>
+                                  <td><?php echo $value['nome_membro'] ?></td>
                                   <td><button id_membro="<?php echo $value['id']; ?>" type="button" class="deletar-membro btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Excluir</button></td>
                                 </tr>
 
